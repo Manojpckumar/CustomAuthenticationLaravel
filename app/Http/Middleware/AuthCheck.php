@@ -18,13 +18,13 @@ class AuthCheck
     {
 
         // if session does not contain user value then go to login while trying to direct access to dashboard
-        if(!session()->has('LoggedUser') && ($request->path() !='auth/login' && $request->path() !='auth/register'))
+        if(!session()->has('LoggedUser') && ($request->path() !='/' && $request->path() !='register'))
         {
-            return redirect('auth/login')->with('fail','Login again');
+            return redirect('/');
         }
 
 
-        if(session()->has('LoggedUser') && ($request->path() =='auth/login' || $request->path() =='auth/register'))
+        if(session()->has('LoggedUser') && ($request->path() =='/' || $request->path() =='register'))
         {
             return back();
         }
